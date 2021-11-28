@@ -1,6 +1,9 @@
 import debounce from "debounce";
 import { useCallback, useEffect, useState } from "react";
+import { Card, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
+
+import "./home.scss";
 
 interface Movies {
   Title: string;
@@ -43,16 +46,30 @@ const Home: React.FC = () => {
 
   return (
     <>
-      <div>hole betches!</div>
-      <input type="text" value={query} onChange={handleTitleChange} />
-      {totalResults.map(({ Title, imdbID, Poster, Type, Year }) => (
-        <div key={imdbID}>
-          <Link to={`/movie/${imdbID}`}>{Title}</Link>
-          <img src={Poster} alt="Poster" />
-          <div>{Type}</div>
-          <div>{Year}</div>
-        </div>
-      ))}
+      <div className="search">
+        <Form.Control
+          type="text"
+          placeholder="Search"
+          value={query}
+          onChange={handleTitleChange}
+          className="search-input"
+        ></Form.Control>
+      </div>
+      <div className="cards">
+        {totalResults.map(({ Title, imdbID, Poster, Type, Year }) => (
+          <Card key={imdbID} className="card">
+            <Card.Img className="card-img" variant="top" src={Poster} />
+            <Card.Body className="card-body">
+              <Card.Title className="card-title">
+                <Link className="card-link" to={`/movie/${imdbID}`}>
+                  {Title}
+                </Link>
+                <Card.Text>{Year}</Card.Text>
+              </Card.Title>
+            </Card.Body>
+          </Card>
+        ))}
+      </div>
     </>
   );
 };

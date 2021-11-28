@@ -1,0 +1,53 @@
+.logo {
+  display: flex;
+  justify-content: center;
+  padding: 20px 0;
+}
+
+.search {
+  display: flex;
+  justify-content: center;
+  padding: 0 40px;
+}
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  justify-content: space-evenly;
+  padding: 40px;
+}
+
+.card {
+  flex: 0 1 200px;
+  border: none;
+}
+
+.card-img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+}
+
+.card-title {
+  color: #b6b2be;
+  font-size: 10px;
+}
+
+.card-link {
+  text-decoration: none;
+  color: #b6b2be;
+  font-size: 15px;
+}
+
+.card-body {
+  background-color: #161623;
+}
+
+.search-input {
+  max-width: 400px;
+}
+
+.loguito {
+  width: 100px;
+}

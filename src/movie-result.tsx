@@ -1,25 +1,34 @@
 import { useCallback, useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Badge } from "react-bootstrap";
+import { useParams } from "react-router-dom";
+import { FcFilmReel } from "react-icons/fc";
+import { BsDot } from "react-icons/bs";
+import { FaTheaterMasks } from "react-icons/fa";
+import { AiFillTrophy } from "react-icons/ai";
+
+import "./movie-result.scss";
 
 type Movie = {
   Actors: string;
   Awards: string;
-  boxOffice: string;
   Director: string;
   Genre: string;
   Plot: string;
   Rated: string;
-  Rating: [];
   imdbRating: string;
   Title: string;
   imdbID: string;
   Poster: string;
-  Type: string;
   Year: string;
 };
 
 const MovieResult: React.FC = () => {
   const [movie, setMovie] = useState<Movie>();
+
+  const actorsSplit = movie?.Actors.split(",");
+  console.log(actorsSplit);
+
+  console.log(movie?.Actors);
 
   const { id } = useParams();
 
@@ -43,19 +52,43 @@ const MovieResult: React.FC = () => {
   }, [id, getInformation]);
   return (
     <>
-      <Link to={"/"}>Back to search</Link>
-      <div>{movie?.Title}</div>
-      <img src={movie?.Poster} alt="Poster" />
-      <div>{movie?.Type}</div>
-      <div>{movie?.Year}</div>
-      <div>{movie?.Director}</div>
-      <div>{movie?.Genre}</div>
-      <div>{movie?.Plot}</div>
-      <div>{movie?.Actors}</div>
-      <div>{movie?.Awards}</div>
-      <div>{movie?.boxOffice}</div>
-      <div>{movie?.Rated}</div>
-      <div>{movie?.imdbRating}</div>
+      <div className="movie-title-and-year">
+        <h1>{movie?.Title}</h1>
+        <h4>{movie?.Year}</h4>
+      </div>
+      <div className="metadata">
+        <Badge bg="secondary">{movie?.Rated}</Badge>
+        <Badge bg="secondary">{movie?.imdbRating}</Badge>
+      </div>
+
+      <div className="movie-img">
+        <img src={movie?.Poster} alt="Poster" />
+      </div>
+
+      <div className="description-movie">
+        <div className="actors">
+          {actorsSplit?.map((actor) => (
+            <div>
+              <Badge bg="secondary">{actor}</Badge>
+            </div>
+          ))}
+        </div>
+        <div className="plot">{movie?.Plot}</div>
+
+        <div>
+          <FcFilmReel /> Director <BsDot />
+          {`${movie?.Director}`}
+        </div>
+        <div>
+          <FaTheaterMasks /> Genre <BsDot />
+          {`${movie?.Genre}`}
+        </div>
+
+        <div>
+          <AiFillTrophy /> Awards <BsDot />
+          {`${movie?.Awards}`}
+        </div>
+      </div>
     </>
   );
 };
