@@ -64,29 +64,30 @@ const MovieResult: React.FC = () => {
       <div className="movie-img">
         <img src={movie?.Poster} alt="Poster" />
       </div>
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <div className="description-movie">
+          <div className="actors">
+            {actorsSplit?.map((actor) => (
+              <div>
+                <Badge bg="secondary">{actor}</Badge>
+              </div>
+            ))}
+          </div>
+          <div className="plot">{movie?.Plot}</div>
 
-      <div className="description-movie">
-        <div className="actors">
-          {actorsSplit?.map((actor) => (
-            <div>
-              <Badge bg="secondary">{actor}</Badge>
-            </div>
-          ))}
-        </div>
-        <div className="plot">{movie?.Plot}</div>
+          <div>
+            <FcFilmReel /> Director <BsDot />
+            {`${movie?.Director}`}
+          </div>
+          <div>
+            <FaTheaterMasks /> Genre <BsDot />
+            {`${movie?.Genre}`}
+          </div>
 
-        <div>
-          <FcFilmReel /> Director <BsDot />
-          {`${movie?.Director}`}
-        </div>
-        <div>
-          <FaTheaterMasks /> Genre <BsDot />
-          {`${movie?.Genre}`}
-        </div>
-
-        <div>
-          <AiFillTrophy /> Awards <BsDot />
-          {`${movie?.Awards}`}
+          <div>
+            <AiFillTrophy /> Awards <BsDot />
+            {`${movie?.Awards}`}
+          </div>
         </div>
       </div>
     </>

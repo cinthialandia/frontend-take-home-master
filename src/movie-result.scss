@@ -3,6 +3,12 @@
   color: white;
 }
 
+.metadata {
+  display: flex;
+  justify-content: center;
+  column-gap: 10px;
+}
+
 .movie-img {
   display: flex;
   justify-content: center;
@@ -27,12 +33,11 @@
   column-gap: 10px;
 }
 
-.metadata {
-  display: flex;
-  justify-content: center;
-  column-gap: 10px;
-}
-
-.plot {
-  color: white;
+@media only screen and (max-width: 600px) {
+  .description-movie {
+    max-width: 400px;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px 20px;
+  }
 }

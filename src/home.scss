@@ -1,7 +1,21 @@
+.logp-container {
+  width: 100px;
+}
+
 .logo {
   display: flex;
   justify-content: center;
   padding: 20px 0;
+}
+
+.principle-title {
+  color: white;
+  text-align: center;
+  font-weight: 600;
+}
+
+.search-input {
+  max-width: 400px;
 }
 
 .search {
@@ -13,8 +27,8 @@
 .cards {
   display: flex;
   flex-wrap: wrap;
+  justify-content: stretch;
   gap: 40px;
-  justify-content: space-evenly;
   padding: 40px;
 }
 
@@ -42,12 +56,4 @@
 
 .card-body {
   background-color: #161623;
-}
-
-.search-input {
-  max-width: 400px;
-}
-
-.loguito {
-  width: 100px;
 }

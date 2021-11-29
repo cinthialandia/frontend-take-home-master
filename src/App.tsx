@@ -9,7 +9,7 @@ function App() {
     <div className="app">
       <div className="logo">
         <Link to="/">
-          <img className="loguito" src={logo} alt="Poster" />
+          <img className="logp-container" src={logo} alt="Poster" />
         </Link>
       </div>
       <Routes>

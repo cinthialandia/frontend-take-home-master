@@ -9,7 +9,6 @@ interface Movies {
   Title: string;
   Poster: string;
   Year: string;
-  Type: string;
   imdbID: string;
 }
 
@@ -46,6 +45,7 @@ const Home: React.FC = () => {
 
   return (
     <>
+      <h1 className="principle-title">Movie Junkie</h1>
       <div className="search">
         <Form.Control
           type="text"
@@ -56,7 +56,7 @@ const Home: React.FC = () => {
         ></Form.Control>
       </div>
       <div className="cards">
-        {totalResults.map(({ Title, imdbID, Poster, Type, Year }) => (
+        {totalResults.map(({ Title, imdbID, Poster, Year }) => (
           <Card key={imdbID} className="card">
             <Card.Img className="card-img" variant="top" src={Poster} />
             <Card.Body className="card-body">
