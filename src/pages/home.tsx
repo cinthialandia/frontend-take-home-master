@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import { Card, Form } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Form } from "react-bootstrap";
+import { MovieCard } from "../components/movie-card";
 
 import "./home.scss";
-import { useSearchMoviesApi } from "./hooks/useSearchMoviesApi";
+import { useSearchMoviesApi } from "../hooks/useSearchMoviesApi";
 
-const Home: React.FC = () => {
+const HomePage: React.FC = () => {
   const [query, setQuery] = useState("");
   const { movies, searchMovies } = useSearchMoviesApi();
 
@@ -34,22 +34,12 @@ const Home: React.FC = () => {
         ></Form.Control>
       </div>
       <div className="cards">
-        {movies.map(({ Title, imdbID, Poster, Year }) => (
-          <Card key={imdbID} className="card">
-            <Card.Img className="card-img" variant="top" src={Poster} />
-            <Card.Body className="card-body">
-              <Card.Title className="card-title">
-                <Link className="card-link" to={`/movie/${imdbID}`}>
-                  {Title}
-                </Link>
-                <Card.Text>{Year}</Card.Text>
-              </Card.Title>
-            </Card.Body>
-          </Card>
+        {movies.map((movie) => (
+          <MovieCard movie={movie} />
         ))}
       </div>
     </>
   );
 };
 
-export default Home;
+export default HomePage;

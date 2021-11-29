@@ -1,28 +1,17 @@
-import { useEffect } from "react";
 import { Badge } from "react-bootstrap";
-import { useParams } from "react-router-dom";
 import { FcFilmReel } from "react-icons/fc";
 import { BsDot } from "react-icons/bs";
 import { FaTheaterMasks } from "react-icons/fa";
 import { AiFillTrophy } from "react-icons/ai";
+import { Movie } from "../types";
+import "./movie-description.scss";
 
-import "./movie-result.scss";
-import { useMovieApi } from "./hooks/useMovieApi";
+interface Props {
+  movie: Movie;
+}
 
-const MovieResult: React.FC = () => {
-  const { movie, getMovie } = useMovieApi();
-
+export const MovieDescription: React.FC<Props> = ({ movie }) => {
   const actorsSplit = movie?.Actors.split(",");
-  console.log(actorsSplit);
-
-  const { id } = useParams();
-
-  useEffect(() => {
-    if (!id) {
-      return;
-    }
-    getMovie(id);
-  }, [id, getMovie]);
   return (
     <>
       <div className="movie-title-and-year">
@@ -66,5 +55,3 @@ const MovieResult: React.FC = () => {
     </>
   );
 };
-
-export default MovieResult;

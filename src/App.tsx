@@ -1,7 +1,7 @@
 import { Link, Route, Routes } from "react-router-dom";
 import "./App.scss";
-import Home from "./home";
-import MovieResult from "./movie-result";
+import HomePage from "./pages/home";
+import MoviePage from "./pages/movie";
 import logo from "../src/logo.png";
 
 function App() {
@@ -13,8 +13,8 @@ function App() {
         </Link>
       </div>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/movie/:id" element={<MovieResult />} />
+        <Route path="/" element={<HomePage />} />
+        <Route path="/movie/:id" element={<MoviePage />} />
       </Routes>
     </div>
   );
