@@ -1,47 +1,25 @@
-import debounce from "debounce";
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Card, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 import "./home.scss";
-
-interface Movies {
-  Title: string;
-  Poster: string;
-  Year: string;
-  imdbID: string;
-}
+import { useSearchMoviesApi } from "./hooks/useSearchMoviesApi";
 
 const Home: React.FC = () => {
   const [query, setQuery] = useState("");
-  const [totalResults, setTotalResults] = useState<Movies[]>([]);
+  const { movies, searchMovies } = useSearchMoviesApi();
 
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setQuery(e.target.value);
-    console.log(query);
   };
-
-  const moviesApi = useCallback(
-    debounce(async (q: string) => {
-      let response = await fetch(
-        `http://www.omdbapi.com/?s=${q}&apikey=320f6ab2`
-      );
-
-      let movies = await response.json();
-      if (movies.Response === "False") {
-        return;
-      }
-      setTotalResults(movies.Search);
-    }, 500),
-    []
-  );
 
   useEffect(() => {
     if (!query) {
       return;
     }
-    moviesApi(query);
-  }, [query, moviesApi]);
+
+    searchMovies(query);
+  }, [query, searchMovies]);
 
   return (
     <>
@@ -56,7 +34,7 @@ const Home: React.FC = () => {
         ></Form.Control>
       </div>
       <div className="cards">
-        {totalResults.map(({ Title, imdbID, Poster, Year }) => (
+        {movies.map(({ Title, imdbID, Poster, Year }) => (
           <Card key={imdbID} className="card">
             <Card.Img className="card-img" variant="top" src={Poster} />
             <Card.Body className="card-body">
